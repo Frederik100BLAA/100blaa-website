@@ -1,0 +1,305 @@
+@font-face {
+    font-family: 'Dunbar';
+    src: url('static/fonts/dunbar.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Minion Pro B';
+    src: url('static/fonts/MinionPro-B.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f1f1f1;
+    color: #222;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    /* Remove height: 100vh; so main content can scroll */
+}
+
+.sidebar {
+    background: #3854a1;
+    color: #fff;
+    width: 320px;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0 0 0;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar-logo {
+    width: 180px;
+    margin-bottom: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar-nav {
+    position: absolute;
+    left: 40px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    font-family: 'Dunbar', Arial, sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    color: #f1f1f1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.sidebar-nav li.active,
+.sidebar-nav li.active a {
+    color: #273168;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.sidebar-nav li a {
+    color: #f1f1f1;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-family: 'Dunbar', Arial, sans-serif;
+    font-size: 1.4rem;
+}
+
+.sidebar-nav li a:hover {
+    color: #a9b5d8;
+    text-decoration: none;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 100vh;
+    overflow-y: auto;
+    position: relative;
+    background: #f1f1f1;
+}
+
+.artist-list h1 {
+    font-family: 'Dunbar', Arial, sans-serif;
+    font-size: 2.5rem;
+    color: #3854a1;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.artist-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.artist-card {
+    background: #fff;
+    border: 2px solid #3854a1;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(40, 60, 120, 0.08);
+    width: 320px;
+    padding: 32px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.artist-card:hover {
+    box-shadow: 0 8px 32px rgba(40, 60, 120, 0.16);
+    transform: translateY(-6px) scale(1.03);
+}
+
+.artist-img-placeholder {
+    width: 120px;
+    height: 120px;
+    background: #a9b5d8;
+    border-radius: 50%;
+    margin-bottom: 24px;
+}
+
+.artist-card h2 {
+    font-family: 'Dunbar', Arial, sans-serif;
+    font-size: 1.5rem;
+    color: #273168;
+    margin: 0 0 12px 0;
+}
+
+.artist-card p {
+    font-size: 1rem;
+    color: #222;
+    text-align: center;
+    margin: 0;
+}
+
+.footer-links {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    z-index: 5;
+}
+
+.footer-links a {
+    color: #a9b5d8;
+    text-decoration: none;
+    font-family: 'Dunbar', Arial, sans-serif;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #3854a1;
+}
+
+/* --- Artist List Page Styles --- */
+.artist-list-main {
+    padding-left: 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    min-height: 100vh;
+    background: #f1f1f1;
+    display: block;
+    position: relative;
+}
+
+.artist-bg-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.artist-bg-fade.visible {
+    opacity: 1;
+}
+
+.artist-list-wrapper {
+    margin-left: 64px;
+    margin-top: 0;
+    width: auto;
+    display: block;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.artist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.artist-list li {
+    margin-bottom: 6px;
+}
+
+.artist-list a {
+    font-family: 'Minion Pro B', 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 3.9rem;
+    color: #3854a1;
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+}
+
+.artist-list a:hover {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.artist-hover-img {
+    position: absolute;
+    top: 40px;
+    right: 5vw;
+    width: 420px;
+    height: 420px;
+    max-width: 32vw;
+    max-height: 60vh;
+    background: #f1f1f1;
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(40, 60, 120, 0.16);
+    overflow: hidden;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+.artist-hover-img.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s;
+}
+
+.artist-hover-img.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+.artist-hover-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 32px;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .artist-list-main {
+        padding-left: 32px;
+        padding-top: 24px;
+    }
+    .artist-list a {
+        font-size: 2rem;
+    }
+} 

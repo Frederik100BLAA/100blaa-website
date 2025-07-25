@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100Blaa | Artister</title>
+    <link rel="stylesheet" href="artist.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="static/img/logo_hvid.png" alt="100Blaa Logo" class="sidebar-logo">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html">Forside</a></li>
+                    <li class="active">Artister</li>
+                    <li><a href="contact.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content artist-list-main">
+            <div class="artist-list-wrapper">
+                <ul class="artist-list">
+                    <li><a href="https://open.spotify.com/artist/6JgNOXKB2X1JjGYReJIa9D?si=csFS7H8eRLy6xpdgRceNxg" target="_blank" rel="noopener" data-img="Bjørn.jpg">BJØRN</a></li>
+                    <li><a href="https://open.spotify.com/artist/5mtHbGSw5MGG5llo4rgZDB?si=Fn9XmMEbR5-T-x-8l5_ZSg" target="_blank" rel="noopener" data-img="Blush.jpg">blush</a></li>
+                    <li><a href="https://open.spotify.com/artist/1YDgOgyvVo2RQlYKQCNVOX?si=FypzYjtXS_iiodbVUhq1Lw" target="_blank" rel="noopener" data-img="100monster.png">IvyBeKind</a></li>
+                    <li><a href="https://www.instagram.com/julius___xaint/" target="_blank" rel="noopener" data-img="100monster.png">Julius Xaint</a></li>
+                    <li><a href="https://open.spotify.com/artist/64TCK9hFlXeyqmeC5JLxyC?si=q7Ja0YWLQHWZHBXdciCM5w" target="_blank" rel="noopener" data-img="KarlaKorsbak.jpg">Karla Korsbak</a></li>
+                    <li><a href="https://open.spotify.com/artist/05YpD8zp3oH1xrBIncrTwV?si=6HLnyk1QSF-2s7NLWbRUWw" target="_blank" rel="noopener" data-img="KarolineFunder.jpg">Karoline Funder</a></li>
+                    <li><a href="https://www.instagram.com/lucca_dahl/" target="_blank" rel="noopener" data-img="Lucca.jpg">Lucca</a></li>
+                    <li><a href="https://open.spotify.com/artist/2ABpmoGVflrSQ8thdBjyrU?si=yPwViQN5Sz2GZImLXiCNdQ" target="_blank" rel="noopener" data-img="NeonPriest.jpg">Neon Priest</a></li>
+                    <li><a href="https://open.spotify.com/artist/134vxVpC78AGeTmoApYQKD?si=KQrt36fdTiiUtVuUjQaNhA" target="_blank" rel="noopener" data-img="100monster.png">Penn Gut</a></li>
+                    <li><a href="https://open.spotify.com/artist/5438LSbtMXzEmfe0qZRff0?si=LQTxG_QTRUKgbl8p_XfOmA" target="_blank" rel="noopener" data-img="Tigeroak.jpg">Tigeroak</a></li>
+                    <li><a href="https://open.spotify.com/artist/7JfoyGGsFgGPfhgfPvpqk8?si=osaSb_J5Q3qhgFztZ5LIsg" target="_blank" rel="noopener" data-img="UngSkab.jpg">Ung-Skab</a></li>
+                </ul>
+            </div>
+            <div class="artist-bg-fade" id="artist-bg-fade"></div>
+        </main>
+    </div>
+<script>
+const artistLinks = document.querySelectorAll('.artist-list a');
+const bgFade = document.getElementById('artist-bg-fade');
+let fadeTimeout = null;
+
+function setArtistBg(imgFile) {
+    if (fadeTimeout) {
+        clearTimeout(fadeTimeout);
+        fadeTimeout = null;
+    }
+    // Instantly set the new image and start fade-in
+    bgFade.style.transition = 'none';
+    bgFade.style.opacity = '0';
+    bgFade.style.backgroundImage = `url('static/img/artist_img/${imgFile}')`;
+    // Force reflow to apply the opacity change
+    void bgFade.offsetWidth;
+    bgFade.style.transition = 'opacity 0.5s';
+    bgFade.classList.add('visible');
+    bgFade.style.opacity = '1';
+}
+
+function clearArtistBg() {
+    if (fadeTimeout) {
+        clearTimeout(fadeTimeout);
+        fadeTimeout = null;
+    }
+    bgFade.style.opacity = '0';
+    fadeTimeout = setTimeout(() => {
+        bgFade.classList.remove('visible');
+        bgFade.style.backgroundImage = '';
+    }, 500);
+}
+
+artistLinks.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        setArtistBg(link.getAttribute('data-img'));
+    });
+    link.addEventListener('mouseleave', () => {
+        clearArtistBg();
+    });
+});
+</script>
+</body>
+</html> 

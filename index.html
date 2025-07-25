@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100Blaa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="static/img/logo_hvid.png" alt="100Blaa Logo" class="sidebar-logo">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">Forside</li>
+                    <li><a href="artist.html">Artister</a></li>
+                    <li><a href="contact.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="carousel-bg"></div>
+            <div class="carousel-bg-wrapper">
+                <img src="static/img/100_blafull.png" alt="100Blaa 100 Icon" class="main-icon-foreground">
+            </div>
+            <footer class="footer-links">
+                <a href="https://www.instagram.com/100blaa/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.tiktok.com/@100blaa" target="_blank" rel="noopener">TikTok</a>
+                <a href="https://open.spotify.com/user/pw2dxkj6fv9zcmggic7zhifn4?si=0e2c95710a2d438b" target="_blank" rel="noopener">Spotify</a>
+            </footer>
+        </main>
+    </div>
+    <script>
+        const images = [
+            "static/img/stills/01_Avatar@2x.jpg",
+            "static/img/stills/02_Avatar@2x.jpg",
+            "static/img/stills/03_Avatar@2x.jpg",
+            "static/img/stills/20250130_KARLA KORSBAK_FEB25_AsgerRyøBorberg-3.jpg",
+            "static/img/stills/20250130_KARLA KORSBAK_FEB25_AsgerRyøBorberg-7.jpg",
+            "static/img/stills/20250324_KARLA KORSBAK_DSP AVATAR.jpg",
+            "static/img/stills/20250329_TIGEROAK_Presse_AsgerRyøBorberg-2.jpg",
+            "static/img/stills/20250405_UNG-SKAB_Presse_AsgerRyøBorberg-13.jpg",
+            "static/img/stills/20250405_UNG-SKAB_Presse_AsgerRyøBorberg-14.jpg",
+            "static/img/stills/20250405_UNG-SKAB_Presse_AsgerRyøBorberg-15.jpg",
+            "static/img/stills/20250405_UNG-SKAB_Presse_AsgerRyøBorberg-26.jpg",
+            "static/img/stills/20250410_TIGEROAK_Presse_AsgerRyøBorberg-6.jpg",
+            "static/img/stills/20250603_BJØRN_Tyngdekraft_Artwork_v3.jpg",
+            "static/img/stills/20250618_LUCCA_Stills0077.jpg",
+            "static/img/stills/20250618_LUCCA_Stills0268.jpg",
+            "static/img/stills/20250618_LUCCA_Stills0871.jpg",
+            "static/img/stills/20250618_LUCCA_Stills0934.jpg",
+            "static/img/stills/Bjørn_EnSomDig_Presse_AsgerRyøBorberg_Comp_00001.jpg",
+            "static/img/stills/Bjørn_EnSomDig_Presse_AsgerRyøBorberg_Comp_00002.jpg",
+            "static/img/stills/Bjørn_EnSomDig_Presse_AsgerRyøBorberg_Comp_00003.jpg",
+            "static/img/stills/DinMørkeHimmel_KarolineFunder_Artwork_AsgerRyøBorberg.jpg",
+            "static/img/stills/Karla Korsbak_Hen Til Det_Artwork_Asger Ryø Borberg_01.04.jpg"
+        ];
+        // Shuffle images array
+        for (let i = images.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [images[i], images[j]] = [images[j], images[i]];
+        }
+        let current = 0;
+        const bgDiv = document.querySelector('.carousel-bg');
+        function showImage(idx) {
+            bgDiv.classList.add('fade-out');
+            setTimeout(() => {
+                bgDiv.style.backgroundImage = `url('${images[idx]}')`;
+                bgDiv.classList.remove('fade-out');
+            }, 1000);
+        }
+        // Auto-advance every 5 seconds
+        setInterval(() => {
+            current = (current + 1) % images.length;
+            showImage(current);
+        }, 5000);
+        // Show first image
+        bgDiv.style.backgroundImage = `url('${images[current]}')`;
+    </script>
+</body>
+</html> 
